@@ -1,0 +1,19 @@
+{
+    "scripts": {
+        "start": "nodemon index.js",
+        "test": "jest --silent --watchAll",
+        "coverage": "jest --coverage --silent"
+      },
+    "name": "application-name",
+    "version": "0.0.1",
+    "devDependencies": {
+        "coverage": "^0.4.1",
+        "jest": "^27.5.1",
+        "nodemon": "^2.0.15",
+        "supertest": "^6.2.2"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.17.3"
+    }
+}
