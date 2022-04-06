@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script src="script.js" defer></script> 
     <meta charset="utf-8" />
     <title>Bootstrap, from Twitter</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,7 +9,24 @@
     <meta name="author" content="" />
 
     <link href="/client/css/bootstrap.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+      function login() {
+        const username = $("#postInput").val();
+        $.post("http://localhost:3001/login", { username: username}, (data, status) => {
+  
+          if (status === 'Posted!')
+            console.log(`${data}`);
+          else
+            console.log("Invalid Input");
+  
+        });
+        //getAllPosts();
+      }
+      
+    </script>
     <style type="text/css">
+      
       body {
         padding-top: 60px;
         padding-bottom: 40px;
@@ -22,7 +40,7 @@
     <link href="/client/css/bootstrap-responsive.css" rel="stylesheet" />
   </head>
 
-  <body>
+  <body onload="getAllPosts()">
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid" style="background-color: #161616">
@@ -92,100 +110,55 @@
         <!--/span-->
         <div class="span9">
           <div class="hero-unit">
-            <h1 style="color: #161616">Pinapple on Pizza yes/no/why?</h1>
-            <form>
-              <textarea
-                style="margin-top: 3vh"
-                id="textArea"
-                placeholder="Add your opinion"
-                cols="30"
-                rows="10"
-              ></textarea>
-              <div class btn>
-                <button id="btnComment" type="submit">Comment</button>
-                <button id="btnClear" onclick="clearInput()">Clear</button>
-                <button id="btnGif">GIF</button>
-              </div>
+            <h1 style="color: #fdeaea">Pinapple on Pizza yes/no/why?</h1>           
+            <form onsubmit="login()">
+              <input id="postInput" style="font-size: 30px;" id="textArea" placeholder="Add your opinion">
+              <br><br>
+              <button id="btnComment" type="submit">Comment</button>
+              <button id="btnClear" onclick="clearInput()">Clear</button>
+              <button id="btnGif">GIF</button>
             </form>
+            <br><br>
+            <div></div>
           </div>
-          <div class="row-fluid">
-            <div class="span4">
-              <h2>Heading</h2>
-              <p>
-                Donec id elit non mi porta gravida at eget metus. Fusce dapibus,
-                tellus ac cursus commodo, tortor mauris condimentum nibh, ut
-                fermentum massa justo sit amet risus. Etiam porta sem malesuada
-                magna mollis euismod. Donec sed odio dui.
-              </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
+          <div class="row-fluid" >
+            <div class="span4" id="listGroup">   
             </div>
-            <!--/span-->
-            <div class="span4">
-              <h2>Heading</h2>
-              <p>
-                Donec id elit non mi porta gravida at eget metus. Fusce dapibus,
-                tellus ac cursus commodo, tortor mauris condimentum nibh, ut
-                fermentum massa justo sit amet risus. Etiam porta sem malesuada
-                magna mollis euismod. Donec sed odio dui.
-              </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div>
-            <!--/span-->
-            <div class="span4">
-              <h2>Heading</h2>
-              <p>
-                Donec id elit non mi porta gravida at eget metus. Fusce dapibus,
-                tellus ac cursus commodo, tortor mauris condimentum nibh, ut
-                fermentum massa justo sit amet risus. Etiam porta sem malesuada
-                magna mollis euismod. Donec sed odio dui.
-              </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div>
-            <!--/span-->
-          </div>
-          <!--/row-->
-          <div class="row-fluid">
-            <div class="span4">
-              <h2>Heading</h2>
-              <p>
-                Donec id elit non mi porta gravida at eget metus. Fusce dapibus,
-                tellus ac cursus commodo, tortor mauris condimentum nibh, ut
-                fermentum massa justo sit amet risus. Etiam porta sem malesuada
-                magna mollis euismod. Donec sed odio dui.
-              </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div>
-            <!--/span-->
-            <div class="span4">
-              <h2>Heading</h2>
-              <p>
-                Donec id elit non mi porta gravida at eget metus. Fusce dapibus,
-                tellus ac cursus commodo, tortor mauris condimentum nibh, ut
-                fermentum massa justo sit amet risus. Etiam porta sem malesuada
-                magna mollis euismod. Donec sed odio dui.
-              </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div>
-            <!--/span-->
-            <div class="span4">
-              <h2>Heading</h2>
-              <p>
-                Donec id elit non mi porta gravida at eget metus. Fusce dapibus,
-                tellus ac cursus commodo, tortor mauris condimentum nibh, ut
-                fermentum massa justo sit amet risus. Etiam porta sem malesuada
-                magna mollis euismod. Donec sed odio dui.
-              </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div>
-            <!--/span-->
-          </div>
-          <!--/row-->
-        </div>
-        <!--/span-->
-      </div>
-      <!--/row-->
-
-      <hr />
+                 
+      <script>
+        function getAllPosts(){
+          let url = "http://localhost:3001/x"
+          fetch(url)
+          .then(function (response) {
+              return response.json();
+          })
+          .then(function (jsonData) {   
+            //console.log(jsonData[0].message)
+          for (let i = 0; i < jsonData.length; i++) {
+              let newLineBreak = document.createElement("br")
+              document.getElementById("listGroup").prepend(newLineBreak)  
+              let tag3 = document.createElement("p")
+              tag3.textContent = ""              
+              let tag4 = document.createElement("a")
+              tag4.setAttribute('class', 'btn')
+              tag4.setAttribute('href', '#')
+              tag4.textContent = 'View details >>>>>';
+              tag4.appendChild(tag3)
+              document.getElementById("listGroup").prepend(tag4)
+              let tag2 = document.createElement("p")
+              tag2.textContent = jsonData[i].message
+              document.getElementById("listGroup").prepend(tag2)
+              let tag = document.createElement("h2")
+              tag.textContent = 'Anonymous'
+              document.getElementById("listGroup").prepend(tag)                   
+            }
+          })
+          .catch(function (error){
+              //alert(error);
+              console.log("Error: " + error)
+          })
+      }
+      </script>
 
       <footer>
         <div>
