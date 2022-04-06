@@ -5,5 +5,9 @@
         "cors": "^2.8.5",
         "express": "^4.17.3",
         "serve": "^13.0.2"
+    },
+    "scripts": {
+        "heroku-prebuild": "npm install -f",
+        "heroku-postbuild": "npm run prod"
     }
 }
