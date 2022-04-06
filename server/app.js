@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const fs = require('fs')
 
+app.use(express.static(__dirname + '/client'))
 
 app.use(bodyParser.urlencoded({ extended: false }));
 

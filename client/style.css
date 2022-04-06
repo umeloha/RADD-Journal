@@ -1,0 +1,94 @@
+body {
+    background-color: #161616;
+    color: wheat;
+    overflow: auto;
+}
+/* logo */
+#logo {
+    width: 2vw;
+}
+#logoText {
+    color: whitesmoke;
+    text-decoration: none;
+}
+#logoText::after {
+    color: whitesmoke;
+    text-decoration: none;
+}
+/* comment section */
+#commentsDiv {
+    display: flex;
+    float: left;
+    width: 40vw;
+    margin-top: 5vh;
+}
+.commentsList {
+    border-style: inset;
+    border-color: whitesmoke;
+    width: max-content;
+    padding-right: 2vw;
+}
+h2 {
+    font-size: medium;
+}
+/* discussion topic */
+h1 {
+    margin-left: 55vw;
+}
+/* comment input section */
+#commentBox {
+    display: grid;
+    margin-left: 55vw;
+    width: 28vw;
+    height: 20vh;
+}
+.btns {
+    color: whitesmoke;
+    background-color: transparent;
+    font-weight: bold;
+}
+.btns:hover {
+    border-style: solid;
+    border: whitesmoke;
+}
+textarea {
+    resize: none;
+}
+/* footer */
+#footer {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: auto auto auto auto;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: 7px;
+}
+.footerItem {
+    color: whitesmoke;
+    text-decoration: none;
+}
+/* dark mode */
+body.active {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    color: black;
+    background-color: white;
+  }
+  body.active {
+  --body-color: ;
+  --text-color: red;
+  }
+  #theme-toggler {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  padding: 15px 20px;
+  font-size: 30px;
+  background: var(--body-color);
+  color: var(--text-color);
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  }
